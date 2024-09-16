@@ -18,4 +18,8 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/.zed
+
+nk_tasks.md
+/tmp
+# is only needed in production
+composer.lock 
