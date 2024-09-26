@@ -5,15 +5,21 @@
                 "name": "Home",
                 "route_name": "home",
                 "exclude_route": true
+            },
+            {
+                "name": "Data Table with CRUD",
+                "url": "data-table-with-crud",
+                "view": "pages.data-table-with-crud",
+                "exclude_route": true
             }
         ]
     },
-    "footer": {
+    "pages": {
         "links": [
             {
-                "name": "Home",
-                "route_name": "home",
-                "exclude_route": true
+                "name": "Data Table with CRUD",
+                "url": "data-table-with-crud",
+                "view": "pages.data-table-with-crud"
             }
         ]
     }
