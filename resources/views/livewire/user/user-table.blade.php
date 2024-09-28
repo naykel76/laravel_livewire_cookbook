@@ -1,8 +1,8 @@
 <div class="container-md">
 
     <div class="flex space-between">
-        <x-gtl-search-input placeholder="Search by name or email..." class="maxw-sm" />
-        <x-gt-button wire:click="create" text="Create" icon="plus-circle" class="primary" />
+        <x-gtl-search-input placeholder="Search by name or email..." class="maxw-sm" rowClass="fg1" />
+        <x-gt-button wire:click="create" text="Add User" icon="plus-circle" class="primary" />
     </div>
 
     <x-gt-modal.dialog wire:model.live="showModal">
@@ -40,7 +40,7 @@
                     <td>{{ $user->email }}</td>
 
                     <td class="tar">
-                        <x-gt-button wire:click="edit({{ $user->id }})" text="Edit" icon="pencil-square" class="xs" />
+                        <x-gt-action-button action="edit" :id="$user->id" />
                     </td>
                 </tr>
             @empty
