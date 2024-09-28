@@ -7,6 +7,11 @@
                 "exclude_route": true
             },
             {
+                "name": "User Table",
+                "route_name": "users.index",
+                "exclude_route": true
+            },
+            {
                 "name": "Data Table with CRUD",
                 "url": "data-table-with-crud",
                 "view": "pages.data-table-with-crud",
@@ -26,6 +31,11 @@
                 "name": "Drag and Drop Sorting - Basic",
                 "url": "#drag-and-drop-sorting-basic",
                 "description": "ToDo list with drag and drop sorting. The sort functionality is fully coded and does not use any Naykel traits."
+            },
+            {
+                "name": "Drag and Drop Sorting - With CRUD",
+                "url": "#drag-and-drop-sorting-with-crud",
+                "description": "ToDo list with drag and drop sorting and CRUD functionality."
             }
         ]
     }

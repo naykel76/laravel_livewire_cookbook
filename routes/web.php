@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Course\CourseCreateEdit;
+use App\Livewire\User\UserTable;
 use Illuminate\Support\Facades\Route;
 use Naykel\Gotime\RouteBuilder;
 
@@ -31,4 +32,6 @@ Route::prefix('courses')->name('courses')->group(function () {
 |
 */
 
-// (new RouteBuilder('nav-admin'))->create();
+Route::prefix('users')->name('users')->group(function () {
+    Route::get('', UserTable::class)->name('.index');
+});

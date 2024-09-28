@@ -3,15 +3,25 @@
 namespace Database\Seeders;
 
 use App\Models\ToDo;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // id's are set to make it easier when testing and debugging
+
         $this->call([CourseSeeder::class]);
 
-        // the id is set to make it easier when testing
+        User::factory()->create([
+            'id' => 142,
+            'name' => 'Jimmy Peters',
+            'email' => 'jimmy@example.com',
+        ]);
+
+        User::factory(3)->create();
+
         ToDo::create(['id' => 487, 'name' => 'First todo...', 'position' => 0]);
         ToDo::create(['name' => 'Second todo...', 'position' => 1]);
         ToDo::create(['name' => 'Third todo...', 'position' => 4]);
