@@ -2,3 +2,12 @@
 
 # NAYKEL Web Application
 
+Component that displays the selected user with their to-do's.
+
+1. Create User
+2. Save User
+3. Display to-do-list
+4. Add to-do
+5. Delete to-do
+6. Edit to-do
+7. Drag and drop sorting

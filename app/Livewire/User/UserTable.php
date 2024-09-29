@@ -20,6 +20,7 @@ class UserTable extends Component
     public string $pageTitle = 'Customer Table';
     public string $view = 'livewire.user.user-table';
     public array $searchableFields = ['name', 'email'];
+    public string $routePrefix = 'users'; // not required for table, but useful for form
 
     public function mount(User $user)
     {

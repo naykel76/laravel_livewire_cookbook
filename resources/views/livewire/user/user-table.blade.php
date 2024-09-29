@@ -1,8 +1,11 @@
-<div class="container-md">
+<div>
 
-    <div class="flex space-between">
-        <x-gtl-search-input placeholder="Search by name or email..." class="maxw-sm" rowClass="fg1" />
-        <x-gt-button wire:click="create" text="Add User" icon="plus-circle" class="primary" />
+    <div class="flex space-between va-c">
+        <x-gtl-search-input placeholder="Search by name or email..." class="maxw-sm" />
+        <div>
+            <x-gt-resource-action-button action="create" text="Add (Modal)" />
+            <x-gt-resource-action-button action="create" text="Add (Route)" type="link" :$routePrefix />
+        </div>
     </div>
 
     <x-gt-modal.dialog wire:model.live="showModal">
@@ -40,7 +43,8 @@
                     <td>{{ $user->email }}</td>
 
                     <td class="tar">
-                        <x-gt-action-button action="edit" :id="$user->id" />
+                        <x-gt-resource-action-button action="edit" :id="$user->id" text="Edit (Modal)" />
+                        <x-gt-resource-action-button action="edit" :id="$user->id" text="Edit (Route)" type="link" :$routePrefix />
                     </td>
                 </tr>
             @empty

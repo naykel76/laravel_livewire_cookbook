@@ -7,8 +7,9 @@
                 "exclude_route": true
             },
             {
-                "name": "User Table",
-                "route_name": "users.index",
+                "name": "Users Table",
+                "url": "data-table-and-create-edit-component",
+                "view": "pages.data-table-and-create-edit-component",
                 "exclude_route": true
             },
             {
@@ -22,7 +23,13 @@
     "pages": {
         "links": [
             {
-                "name": "Data Table with CRUD",
+                "name": "User Data Table with CreateEdit Component (Modal and Route)",
+                "url": "data-table-and-create-edit-component",
+                "view": "pages.data-table-and-create-edit-component",
+                "description": "User data table with pagination, sorting, search, and CreateEdit component, accessible via modal on the same page and through routes."
+            },
+            {
+                "name": "Data Table with CRUD (Course)",
                 "url": "data-table-with-crud",
                 "view": "pages.data-table-with-crud",
                 "description": "Data table example with pagination, sorting, search, and CRUD functions, accessible via modal on the same page and through routes."
@@ -31,11 +38,6 @@
                 "name": "Drag and Drop Sorting - Basic",
                 "url": "#drag-and-drop-sorting-basic",
                 "description": "ToDo list with drag and drop sorting. The sort functionality is fully coded and does not use any Naykel traits."
-            },
-            {
-                "name": "Drag and Drop Sorting - With CRUD",
-                "url": "#drag-and-drop-sorting-with-crud",
-                "description": "ToDo list with drag and drop sorting and CRUD functionality."
             }
         ]
     }
