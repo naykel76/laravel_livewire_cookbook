@@ -14,18 +14,27 @@ class DatabaseSeeder extends Seeder
 
         $this->call([CourseSeeder::class]);
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'id' => 142,
             'name' => 'Jimmy Peters',
             'email' => 'jimmy@example.com',
         ]);
 
+        $user->toDos()->createMany([
+           ['id' => 127, 'name' => 'Second todo...', 'position' => 1],
+           ['name' => 'First todo...', 'position' => 0],
+           ['name' => 'Fifth todo...', 'position' => 4],
+           ['name' => 'Third todo...', 'position' => 2],
+           ['name' => 'Fourth todo...', 'position' => 3],
+        ]);
+
         User::factory(3)->create();
 
-        ToDo::create(['id' => 487, 'name' => 'First todo...', 'position' => 0]);
-        ToDo::create(['name' => 'Second todo...', 'position' => 1]);
-        ToDo::create(['name' => 'Third todo...', 'position' => 4]);
+        // these are intentionally out of order to test sorting
+        ToDo::create(['id' => 487, 'name' => 'Second todo...', 'position' => 1]);
+        ToDo::create(['name' => 'First todo...', 'position' => 0]);
+        ToDo::create(['name' => 'Fifth todo...', 'position' => 4]);
+        ToDo::create(['name' => 'Third todo...', 'position' => 2]);
         ToDo::create(['name' => 'Fourth todo...', 'position' => 3]);
-        ToDo::create(['name' => 'Fifth todo...', 'position' => 2]);
     }
 }

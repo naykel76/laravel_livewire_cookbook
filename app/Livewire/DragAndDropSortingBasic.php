@@ -73,7 +73,9 @@ class DragAndDropSortingBasic extends Component
 
     public function render()
     {
-        $query = ToDo::all()->sortBy('position');
+        // there is not need to use orderBy('position') here because it is
+        // handled by the global scope in the ToDo model
+        $query = ToDo::whereNull('user_id')->get();
 
         return view($this->view, [
             'items' => $query,
