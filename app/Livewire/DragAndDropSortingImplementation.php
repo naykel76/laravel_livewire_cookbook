@@ -5,18 +5,24 @@ namespace App\Livewire;
 use App\Models\ToDo;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Naykel\Gotime\Traits\Renderable;
 
-class DragAndDropSortingBasic extends Component
+class DragAndDropSortingImplementation extends Component
 {
-    public string $view = 'livewire.drag-and-drop-sorting-basic';
+    use Renderable;
+
+    protected string $modelClass = ToDo::class;
+    public string $view = 'livewire.drag-and-drop-sorting-implementation';
 
     /**
-     * @param  int  $id  The ID of the model to be sorted (from Alpine $item).
-     * @param  int  $position  The new position for the model (from the AlpineJS) $position.
+     * Sort the model to a new position.
+     *
+     * @param  int  $id  The ID of the model to be sorted.
+     * @param  int  $position  The NEW position for the model.
      */
-    public function sort($id, $position): void
+    public function sort(int $id, int $position): void
     {
-        $model = $this->query()->findOrFail($id);
+        $model = $this->modelClass::findOrFail($id);
 
         DB::transaction(function () use ($model, $position) {
             $current = $model->position;
@@ -28,7 +34,7 @@ class DragAndDropSortingBasic extends Component
             $model->update(['position' => -1]);
 
             // Grab the shifted block and shift it up or down...
-            $block = $this->query()->whereBetween('position', [
+            $block = $this->modelClass::whereBetween('position', [
                 min($current, $position),
                 max($current, $position),
             ]);
@@ -66,19 +72,17 @@ class DragAndDropSortingBasic extends Component
         });
     }
 
-    protected function query()
+    private function query()
     {
-        return ToDo::query();
+        // Note: there is not need to use orderBy('position') here because it is
+        // handled by the global scope in the ToDo model
+        return $this->modelClass::query()->whereNull('user_id');
     }
 
-    public function render()
+    protected function prepareData()
     {
-        // there is not need to use orderBy('position') here because it is
-        // handled by the global scope in the ToDo model
-        $query = ToDo::whereNull('user_id')->get();
+        $query = $this->query();
 
-        return view($this->view, [
-            'items' => $query,
-        ]);
+        return ['items' => $query->get()];
     }
 }

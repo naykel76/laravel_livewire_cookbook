@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->toDos()->createMany([
-           ['id' => 127, 'name' => 'Second todo...', 'position' => 1],
-           ['name' => 'First todo...', 'position' => 0],
-           ['name' => 'Fifth todo...', 'position' => 4],
-           ['name' => 'Third todo...', 'position' => 2],
-           ['name' => 'Fourth todo...', 'position' => 3],
+            ['id' => 127, 'name' => 'Second todo...', 'position' => 1],
+            ['name' => 'First todo...', 'position' => 0],
+            ['name' => 'Fifth todo...', 'position' => 4],
+            ['name' => 'Third todo...', 'position' => 2],
+            ['name' => 'Fourth todo...', 'position' => 3],
         ]);
 
         User::factory(3)->create();
