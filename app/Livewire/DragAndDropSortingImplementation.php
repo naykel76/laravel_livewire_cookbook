@@ -2,15 +2,18 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\ToDoForm;
 use App\Models\ToDo;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Naykel\Gotime\Traits\Renderable;
+use Naykel\Gotime\Traits\WithLivewireHelpers;
 
 class DragAndDropSortingImplementation extends Component
 {
-    use Renderable;
+    use Renderable, WithLivewireHelpers;
 
+    public ToDoForm $form;
     protected string $modelClass = ToDo::class;
     public string $view = 'livewire.drag-and-drop-sorting-implementation';
 

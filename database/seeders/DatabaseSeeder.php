@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
         $user->toDos()->createMany([
             ['id' => 127, 'name' => 'Second todo...', 'position' => 1],
             ['name' => 'First todo...', 'position' => 0],
-            ['name' => 'Fifth todo...', 'position' => 4],
-            ['name' => 'Third todo...', 'position' => 2],
-            ['name' => 'Fourth todo...', 'position' => 3],
+            ['name' => 'Fifth todo...', 'position' => 14],
+            ['name' => 'Third todo...', 'position' => 12],
+            ['name' => 'Fourth todo...', 'position' => 13],
         ]);
 
         User::factory(3)->create();
