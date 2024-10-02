@@ -2,21 +2,16 @@
 
 namespace App\Livewire\Traits;
 
+use Closure;
 use Illuminate\Support\Facades\DB;
 
 /**
- * This trait is a little inflexible in that it assumes the model has a position
- * column and a sortableFilter scope with the exact query conditions for the
- * items you want to sort.
+ * This trait is more flexible than the previous commit. It allows you to pass
+ * in a callback function to change the query conditions for the sortableFilter
+ * scope when calling the move method in the component or controller.
  *
- * For example, if you have a `ToDo` model and you want to select the `ToDos` by
- * `user_id`, you need to ensure the `sortableFilter` scope is set up to filter
- * by `user_id`, this can not be done dynamically from the component class.
- *
- * $query->whereUserId(User::first()->id);
- *
- * You can make it more flexible by adding a callback function that you can pass
- * in to the sortableFilter scope directly from the component or controller.
+ * Refer to previous commit for the simple implementation without the callback.
+ * https://github.com/naykel76/laravel_livewire_cookbook/commit/076cdf0ec9382912eb4a92de862ff3ca14dbdd32
  */
 trait DraggableModelTrait
 {
@@ -45,9 +40,9 @@ trait DraggableModelTrait
         });
     }
 
-    public function move($position)
+    public function move($position, ?Closure $callback = null): void
     {
-        DB::transaction(function () use ($position) {
+        DB::transaction(function () use ($position, $callback) {
             $current = $this->position;
             $newPosition = $position;
 
@@ -57,16 +52,14 @@ trait DraggableModelTrait
             // Move the item out of the position stack...
             $this->update(['position' => -1]);
 
-            // Grab the shifted block and shift it up or down...
-            $block = static::sortableFilter($this)->whereBetween('position', [
-                min($current, $newPosition),
-                max($current, $newPosition),
-            ]);
+            // Apply the callback when fetching the block to shift positions
+            $block = static::sortableFilter($callback)
+                ->whereBetween('position', [min($current, $newPosition), max($current, $newPosition)]);
 
             // Determine the direction of the shift...
             $isDraggingDownwards = $current < $position;
 
-            // Adjust the positions: decrement for moving down, increment for moving up
+            // Determine the direction of the shift and adjust positions accordingly...
             $isDraggingDownwards
                 ? $block->decrement('position')
                 : $block->increment('position');
@@ -74,15 +67,21 @@ trait DraggableModelTrait
             // Place item back in position stack...
             $this->update(['position' => $position]);
 
-            $this->arrange();
+            $this->arrange($callback);
         });
     }
 
-    public function arrange()
+    /**
+     * Arrange the items based on the sortable filter and update their positions.
+     *
+     * @param  Closure|null  $callback  Optional callback to modify the query conditions.
+     */
+    private function arrange(?Closure $callback = null): void
     {
-        DB::transaction(function () {
+        DB::transaction(function () use ($callback) {
             $position = 0;
-            foreach (static::sortableFilter($this)->get() as $model) {
+            $items = static::sortableFilter($callback)->get();
+            foreach ($items as $model) {
                 $model->position = $position++;
                 $model->save();
             }

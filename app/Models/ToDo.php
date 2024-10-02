@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Livewire\Traits\DraggableModelTrait;
+use Closure;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,15 +18,20 @@ class ToDo extends Model
     }
 
     /**
-     * This query scope is pretty inflexible, because there is no way to change
-     * the query conditions from the component or controller when calling the
-     * move method.
+     * This query scope defines the items that are eligible to be sorted. It
+     * allows you to modify the query conditions using a callback function which
+     * can be passed in when calling the move method in the component or
+     * controller.
      *
-     * For the sake of this example, we are will just return the first user_id
-     * in the database which has seeded data.
+     * @param  Builder  $query  The query builder instance.
+     * @param  Closure|null  $callback  Optional callback to modify the query conditions.
      */
-    protected function scopeSortableFilter(Builder $query): Builder
+    protected function scopeSortableFilter(Builder $query, ?Closure $callback = null): Builder
     {
-        return $query->whereUserId(User::first()->id);
+        if ($callback) {
+            $callback($query);
+        }
+
+        return $query;
     }
 }
