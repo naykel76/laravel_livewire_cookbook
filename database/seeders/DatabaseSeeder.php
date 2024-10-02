@@ -4,10 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\ToDo;
 use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    use WithoutModelEvents;
+
     public function run(): void
     {
         // id's are set to make it easier when testing and debugging
@@ -21,20 +24,20 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->toDos()->createMany([
-            ['id' => 127, 'name' => 'Second todo...', 'position' => 1],
-            ['name' => 'First todo...', 'position' => 0],
-            ['name' => 'Fifth todo...', 'position' => 14],
-            ['name' => 'Third todo...', 'position' => 12],
-            ['name' => 'Fourth todo...', 'position' => 13],
+            ['id' => 127, 'name' => 'User - Second todo...', 'position' => 1],
+            ['name' => 'User - First todo...', 'position' => 0],
+            ['name' => 'User - Fifth todo...', 'position' => 14],
+            ['name' => 'User - Third todo...', 'position' => 12],
+            ['name' => 'User - Fourth todo...', 'position' => 13],
         ]);
 
         User::factory(3)->create();
 
         // these are intentionally out of order to test sorting
-        ToDo::create(['id' => 487, 'name' => 'Second todo...', 'position' => 1]);
+        ToDo::create(['id' => 487, 'name' => 'Second todo...', 'position' => 21]);
         ToDo::create(['name' => 'First todo...', 'position' => 0]);
-        ToDo::create(['name' => 'Fifth todo...', 'position' => 4]);
-        ToDo::create(['name' => 'Third todo...', 'position' => 2]);
-        ToDo::create(['name' => 'Fourth todo...', 'position' => 3]);
+        ToDo::create(['name' => 'Fifth todo...', 'position' => 24]);
+        ToDo::create(['name' => 'Third todo...', 'position' => 12]);
+        ToDo::create(['name' => 'Fourth todo...', 'position' => 13]);
     }
 }
