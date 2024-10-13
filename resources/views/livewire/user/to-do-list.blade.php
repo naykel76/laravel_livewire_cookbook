@@ -9,6 +9,7 @@
                 <li wire:key="{{ $todo->id }}" x-sort:item="{{ $todo->id }}" 
                     class="bx pxy-075 flex items-center space-between hover:bg-gray-100 cursor-move">
                 <span>
+                    {{ $todo->user_id }}
                     {{ $todo->name }} <br><small>Position: {{ $todo->position }}</small>
                 </span>
                 <x-gt-resource-action-button action="edit" :id="$todo->id" />

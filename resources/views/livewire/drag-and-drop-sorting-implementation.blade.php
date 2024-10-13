@@ -20,7 +20,6 @@
     </ul>
     <!-- Create/Edit modal -->
     <x-gt-modal.base wire:model="showModal">
-        <x-gt-errors />
         <form wire:submit="save">
             <div class="flex gap">
                 <x-gt-input wire:model="form.name" label="name" rowClass="fg1" />

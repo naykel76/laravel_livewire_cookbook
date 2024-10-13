@@ -7,6 +7,7 @@
             @forelse($items as $todo)
                 <tr>
                     <td>{{ str_pad($todo->id, 5, 0, STR_PAD_LEFT) }}</td>
+                    <td>{{ $todo->user_id }}</td>
                     <td>{{ $todo->name }}</td>
                     <td>{{ $todo->position }}</td>
                     <td class="tar">

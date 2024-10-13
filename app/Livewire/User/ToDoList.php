@@ -20,8 +20,8 @@ class ToDoList extends Component
     public function sort($key, $position)
     {
         // Specifies the items to be sorted using the move method's callback
-        $this->modelClass::findOrFail($key)
-            ->move($position, fn ($query) => $this->filterByUser($query));
+        $callback = fn ($query) => $query->whereUserId(User::first()->id);
+        $this->modelClass::findOrFail($key)->move($position, $callback);
     }
 
     private function filterByUser($query)

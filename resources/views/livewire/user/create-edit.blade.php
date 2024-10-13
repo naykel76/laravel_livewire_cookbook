@@ -6,6 +6,7 @@
         </div>
         <div class="grid lg:cols-2">
             <x-gt-input wire:model="form.phone" label="phone" />
+            <x-gt-input wire:model="form.password" label="password" disabled/>
         </div>
         <x-gt-button wire:click="save" class="btn primary px-075" text="save" icon="disk" />
     </form>

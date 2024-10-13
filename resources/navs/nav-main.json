@@ -38,6 +38,11 @@
                 "name": "Drag and Drop Sorting - Basic",
                 "url": "#drag-and-drop-sorting-basic",
                 "description": "ToDo list with drag and drop sorting. The sort functionality is fully coded and does not use any Naykel traits."
+            },
+            {
+                "name": "Table and List Component - Side-By-Side",
+                "url": "#table-and-list-components",
+                "description": "Simple side-by-side compassion of a list and table component."
             }
         ]
     }

@@ -28,14 +28,33 @@ trait DraggableModelTrait
         });
 
         /**
-         * Set the position to the next available position based on the
-         * sortableFilter scope when creating a new model.
+         * This is not working as expected.
          *
-         * The creating method in Laravel's Eloquent ORM hooks into the model's
-         * lifecycle, firing before a new model is saved to the database.
+         * It should set the position to the next available position based on
+         * the sortableFilter scope when creating a new model.
+         *
+         * The problem is that in the original implementation the $model is
+         * passed into the `sortableFilter` scope allowing it to consider the
+         * range of positions when creating a new model.
+         *
+         * $max = static::sortableFilter($model)->max('position') ?? -1;
+         *
+         * With the addition of the optional callback in the `sortableFilter` it
+         * throws an error because the `sortableFilter` scope is expecting a
+         * callback, not a model instance.
+         *
+         * The solution is to remove the $model argument and the error goes away
+         * but the position is not set correctly. It simply finds the max
+         * position from all the records in the table and sets the new model to
+         * the max + 1.
+         *
+         * While this is not ideal, I am leaving it as because at this point the
+         * care factor is 0 and I see no problem as long as you are not
+         * displaying the position in the UI. If you are, you can simple move
+         * the item and the arrange method will update the positions correctly.
          */
         static::creating(function ($model) {
-            $max = static::sortableFilter($model)->max('position') ?? -1;
+            $max = static::sortableFilter()->max('position') ?? -1;
             $model->position = $max + 1;
         });
     }

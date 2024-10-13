@@ -13,7 +13,6 @@ class ToDoForm extends Form
     use Crudable, Formable;
 
     public string $name;
-    public string $position;
     public ?string $user_id;
 
     public function rules()
@@ -22,7 +21,6 @@ class ToDoForm extends Form
             'name' => 'required|string|max:128',
             // system fields not handled directly form inputs
             'user_id' => 'sometimes',
-            'position' => 'required',
         ];
     }
 
@@ -30,16 +28,14 @@ class ToDoForm extends Form
     {
         $this->editing = $todo;
         $this->setFormProperties($this->editing);
-
-        // update setFormProperties to handle this
         $this->user_id = $editing->user_id ?? null;
     }
 
     public function createNewModel(array $data = []): ToDo
     {
-        return ToDo::factory()->make(array_merge([
+        return ToDo::make(array_merge([
             'name' => '',
-            // 'user_id' => User::first()->id,
+            'user_id' => User::first()->id,
         ], $data));
     }
 }
