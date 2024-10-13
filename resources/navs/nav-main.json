@@ -7,6 +7,11 @@
                 "exclude_route": true
             },
             {
+                "name": "Dev",
+                "route_name": "dev",
+                "exclude_route": true
+            },
+            {
                 "name": "Users Table",
                 "url": "data-table-and-create-edit-component",
                 "view": "pages.data-table-and-create-edit-component",

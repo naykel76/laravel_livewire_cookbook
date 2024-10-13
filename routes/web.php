@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
+Route::get('/dev', function () {
+    return view('dev');
+})->name('dev');
+
 Route::prefix('courses')->name('courses')->group(function () {
     Route::get('/{course}/edit', CourseCreateEdit::class)->name('.edit');
     Route::get('/create', CourseCreateEdit::class)->name('.create');
