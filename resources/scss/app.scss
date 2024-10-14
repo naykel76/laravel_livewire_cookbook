@@ -3,7 +3,18 @@
 //     $secondary: #13ad3a
 // );
 
-@use "node_modules/nk_jtb/src/variables" as *;
-@use "node_modules/nk_jtb/src/mixins/media" as *;
-@use "node_modules/nk_jtb/src/jtb";
-@use "node_modules/nk_jtb/src/extras/nk-app";
+@use 'node_modules/nk_jtb/src/variables' as *;
+@use 'node_modules/nk_jtb/src/mixins/media' as *;
+@use 'node_modules/nk_jtb/src/jtb';
+@use 'node_modules/nk_jtb/src/extras/nk-app';
+
+.-ml-9 pre code {
+    margin-left: -9rem;
+}
+.-ml-11 pre code {
+    margin-left: -11rem;
+}
+.-ml-13 pre code {
+    margin-left: -13rem;
+}
+

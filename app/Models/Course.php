@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
+    public function modules()
+    {
+        return $this->hasMany(Module::class);
+    }
 }
