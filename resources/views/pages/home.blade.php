@@ -8,6 +8,9 @@
     <hr class="mx-5">
     <div class="container">
         <x-gt-menu menuname="pages" filename="nav-main" layout="fp-boxes" />
+        <hr>
+        <h2>Eloquent</h2>
+        <x-gt-menu menuname="eloquent" filename="nav-main" layout="fp-boxes" />
     </div>
     <hr class="mx-5">
     <section>

@@ -50,5 +50,15 @@
                 "description": "Simple side-by-side compassion of a list and table component."
             }
         ]
+    },
+    "eloquent": {
+        "links": [
+            {
+                "name": "Eager Loading Specific Columns",
+                "url": "eloquent-eager-loading-specific-columns",
+                "description": "Samples to eagerly load specific columns with Eloquent.",
+                "exclude_route": true
+            }
+        ]
     }
 }

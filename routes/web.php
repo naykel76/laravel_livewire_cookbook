@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EloquentEagerLoadSpecificColumnsController;
 use App\Livewire\Course\CourseCreateEdit;
 use App\Livewire\User\UserCreateEdit;
 use Illuminate\Support\Facades\Route;
@@ -19,8 +20,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dev', function () {
-    return view('dev');
+    return view('dev')->with('pageTitle', 'Dev Page');
 })->name('dev');
+
+Route::get('eloquent-eager-loading-specific-columns', EloquentEagerLoadSpecificColumnsController::class);
 
 Route::prefix('courses')->name('courses')->group(function () {
     Route::get('/{course}/edit', CourseCreateEdit::class)->name('.edit');

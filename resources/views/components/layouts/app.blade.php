@@ -10,13 +10,12 @@
 
     @includeFirst(['components.layouts.partials.navbar', 'gotime::components.layouts.partials.navbar'])
 
-    <main {{ $attributes->merge(['class' => 'nk-main py-5-3-2']) }}>
-        <div class="container">
-            @if ($hasTitle)
-                <h1>{{ $pageTitle }}</h1>
-            @endif
-            {{ $slot }}
-        </div>
+    <main {{ $attributes->merge(['class' => 'nk-main']) }}>
+        {{-- don't add a container here, it is more hassle than it is worth! --}}
+        @if ($hasTitle)
+            <h1>{{ $pageTitle }}</h1>
+        @endif
+        {{ $slot }}
     </main>
 
     @includeFirst(['components.layouts.partials.footer', 'gotime::components.layouts.partials.footer'])
