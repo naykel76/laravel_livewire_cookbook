@@ -12,12 +12,15 @@ class CourseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Setting the ID to start from a higher value for easier visual differentiation
-        Course::factory()
-            ->has(Module::factory(2)
-                ->state(new Sequence(['id' => 300], ['id' => 301]))
-                ->has(Lesson::factory(3)))
-            ->state(new Sequence(['id' => 401], ['id' => 402], ['id' => 403]))
+        // Setting the ID's to start from a higher value for easier visual differentiation
+        $course = Course::factory()
+            ->has(Module::factory(3)
+                ->state(new Sequence(
+                    ['id' => 300, 'title' => 'Module One'],
+                    ['id' => 301, 'title' => 'Module Two'],
+                    ['id' => 302, 'title' => 'Module Three']
+                ))
+                ->has(Lesson::factory(random_int(3, 6))))
             ->create(['id' => 200, 'title' => 'Course One']);
 
         Course::factory()

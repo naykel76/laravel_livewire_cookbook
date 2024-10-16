@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         // id's are set to make it easier when testing and debugging
 
         $this->call([CourseSeeder::class]);
+        $this->call([StudentCourseSeeder::class]);
 
         $user = User::factory()->create([
             'id' => 142,
@@ -39,5 +40,6 @@ class DatabaseSeeder extends Seeder
         ToDo::create(['name' => 'Fifth todo...', 'position' => 24]);
         ToDo::create(['name' => 'Third todo...', 'position' => 12]);
         ToDo::create(['name' => 'Fourth todo...', 'position' => 13]);
+
     }
 }
