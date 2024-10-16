@@ -11,7 +11,7 @@ class LessonFactory extends Factory
     {
         return [
             'title' => 'Lesson: '.$this->faker->sentence,
-            'description' => $this->faker->paragraph,
+            'body' => $this->faker->paragraph,
             'type' => $this->faker->randomElement(['video', 'document', 'download', 'quiz']),
             'module_id' => Module::factory(),
         ];

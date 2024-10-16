@@ -11,7 +11,7 @@ class ModuleFactory extends Factory
     {
         return [
             'title' => 'Module: '.$this->faker->sentence,
-            'description' => $this->faker->paragraph,
+            'body' => $this->faker->paragraph,
             'course_id' => Course::factory(),
         ];
     }

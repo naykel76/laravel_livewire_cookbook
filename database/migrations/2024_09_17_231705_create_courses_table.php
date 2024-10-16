@@ -16,12 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique()->nullable();
             $table->string('code')->unique();
-            $table->mediumText('description')->nullable();
             $table->longText('body');
             $table->string('image_name')->nullable();
-            $table->integer('price')->nullable();
             $table->dateTime('published_at')->nullable();
-            $table->dateTime('released_at')->nullable();
             $table->timestamps();
         });
     }

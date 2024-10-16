@@ -12,12 +12,10 @@ return new class extends Migration
             $table->id('id');
             $table->string('title');
             $table->string('type');
-            $table->mediumText('description')->nullable();
             $table->longText('body')->nullable();
             $table->string('image_name')->nullable();
-            $table->string('file_name')->nullable();
             $table->integer('position')->nullable()->default(0);
-            $table->unsignedBigInteger('module_id')->nullable();
+            $table->foreignId('module_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

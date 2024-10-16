@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->mediumText('description')->nullable();
+            $table->longText('body')->nullable();
             $table->integer('position')->nullable()->default(0);
             $table->foreignId('course_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
