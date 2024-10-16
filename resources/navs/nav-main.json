@@ -58,6 +58,12 @@
                 "url": "eloquent-eager-loading-specific-columns",
                 "description": "Samples to eagerly load specific columns with Eloquent.",
                 "exclude_route": true
+            },
+            {
+                "name": "Advanced Nesting and Eager Loading",
+                "url": "eloquent-advanced-nesting",
+                "description": "",
+                "exclude_route": true
             }
         ]
     }

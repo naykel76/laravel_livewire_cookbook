@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EloquentAdvancedNestingController;
 use App\Http\Controllers\EloquentEagerLoadSpecificColumnsController;
 use App\Livewire\Course\CourseCreateEdit;
 use App\Livewire\User\UserCreateEdit;
@@ -24,6 +25,7 @@ Route::get('/dev', function () {
 })->name('dev');
 
 Route::get('eloquent-eager-loading-specific-columns', EloquentEagerLoadSpecificColumnsController::class);
+Route::get('eloquent-advanced-nesting', EloquentAdvancedNestingController::class);
 
 Route::prefix('courses')->name('courses')->group(function () {
     Route::get('/{course}/edit', CourseCreateEdit::class)->name('.edit');

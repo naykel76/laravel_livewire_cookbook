@@ -14,8 +14,15 @@ export default defineConfig({
         }),
         {
             name: 'blade',
+
+
+
             handleHotUpdate({ file, server }) {
-                if (file.endsWith('.blade.php') || file.endsWith('.js') || (file.endsWith('.php') && file.includes('/app/Livewire/'))) {
+                if (
+                    file.endsWith('.blade.php') || file.endsWith('.js')
+                    || (file.endsWith('.php') && file.includes('/app/Livewire/'))
+                    || file.includes('/app/Http/Controllers/') // Add this condition
+                ) {
                     server.ws.send({
                         type: 'full-reload',
                         path: '*',

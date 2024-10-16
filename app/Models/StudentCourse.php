@@ -11,6 +11,11 @@ class StudentCourse extends Model
 
     protected $guarded = [];
     public $timestamps = false;
+    protected $casts = [
+        'started_at' => 'datetime',
+        'completed_at' => 'datetime',
+        'expired_at' => 'datetime',
+    ];
 
     /**
      * -----------------------------------------------------------------------
